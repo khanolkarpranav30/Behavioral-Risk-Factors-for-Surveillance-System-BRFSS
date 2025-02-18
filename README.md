@@ -57,6 +57,70 @@ For this study, according to **BRFSS data**, the number of BMI categories consid
 
 <img width="372" alt="Screenshot 2025-02-18 at 5 28 14 PM" src="https://github.com/user-attachments/assets/10402397-7cd1-4bbf-a1d0-d1adeffee1a5" />
 
+## Cluster Analysis
+From the results depicted in Figure 2, it is observed that the mean BMI values of all four clusters are nearly the same. The major factor in grouping observed is the population, where New York had the highest number of respondents forming its own cluster. The minor observations made in these four clusters are tabulated in Table.
+
+<img width="571" alt="Screenshot 2025-02-18 at 5 38 20 PM" src="https://github.com/user-attachments/assets/6e4da1eb-8352-4f06-b7a7-d12d4ce92299" />
+
+
+## ANOVA Analysis
+As expected, all variables of interest violated the assumption of homogeneity (Appendix 2). Our ANOVA results showed:
+
+- **Main Effects:**
+  - Age was significant: F(12, 12246662) = 34.231, p< .001, ηA² = .001.
+  - Gender was less significant: F(1, 12246662) = 4.660, p < .05, ηA² < .001.
+  - Urban was significant: F(1, 12246662) = 7.559, p < .01, ηA² < .001.
+  - Income was not significant: F(4, 12246662) = 2.237, p = 0.062, ηA² < .001.
+
+- **Most Significant Interactions:**
+  - Age and Gender: F(12, 12246662) = 4.17, p< .001, ηA² = .0002.
+  - Gender and Income: F(4, 12246662) = 7.69, p < .001, ηA² = .0002.
+  - Age, Gender, and Income: F(4, 12246662) = 1.532, p < .001, ηA² = .0002.
+
+- **Less Significant Interactions:**
+  - Age and Urban: F(12, 12246662) = 2.100, p < .05, ηA² = .0002.
+  - Age and Income: F(48, 12246662) = 1.550, p < .01, ηA² = .0002.
+  - Age, Gender, and Income: F(48, 12246662) = 4.769, p< .001, ηA² = .0002.
+
+For younger age groups (18-39), BMI score differences between men and women were not significant. However, for older age groups, significant differences emerged. For instance, in the 45-49 age group:
+- Men (M = 29.69, SD = 6.13, N=10968) had significantly higher BMI scores than women (M=29.25, SD=6.79, N=11653), p <.001, d = .06.
+
+The interaction between Gender and Income was significant:
+- For women, higher income groups had significantly lower BMI scores. The BMI score differences were observed between:
+  - < $15K (M = 30.057, SD = 8.29, N=17159) and $15K-$25K (M = 29.189, SD = 7.49 , N=28662), p<.001, d=.11.
+  - $15K-$25K and $25K-$35K (M = 28.757, SD = 7.00 , N=18271), p<.001, d =.06.
+  - $35K-$50K (M= 28.613, SD = 6.74, N=22852) p<.01 and >$50K (M = 27.435, SD= 6.19, N=77203), p<.01, d=.19.
+- For men, the only significant difference was between:
+  - $25K-35K (M = 28.409, SD = 5.937, N = 14526) and $35K-$50K (M = 28.619, SD = 5.808, SD = 21083)，p <.05, d = .04.
+
+## Logistic Regression Analysis
+The results of the logistic regression models are summarized in Table 4.
+
+- **Residual Deviance:** High for all predictors.
+- **Predictivity:** Adding BMI improved predictivity as reflected with lower AIC scores.
+- **Heart Attack Diagnosis:** Adding BMI improved the regression model, X²(1, N=317,557) = 497.51, p < .001.
+- **Diabetes Diagnosis:** X²(1, N=317,557) = 3814.63, p < .001.
+- **Cancer Diagnosis:** p = 0.334 (not improved by adding BMI).
+- 
+<img width="585" alt="Screenshot 2025-02-18 at 5 41 02 PM" src="https://github.com/user-attachments/assets/49ce2a15-7b18-4be1-9dd0-dacc8e068936" />
+
+
+## Summary and Key Findings
+The BRFSS dataset was utilized to analyze respondents' BMI data. The dataset was preprocessed to obtain 12 variables and included only complete responses for consistency across analyses.
+
+- **Clustering Analysis:** Grouped US states based on mean BMI values to assist in health initiatives. All clusters had mean BMI values in the overweight category (~28). However, due to data skewness and limited state representation (e.g., only 12,000 of California's 40 million population responded), findings cannot be generalized.
+- **ANOVA Analysis:** Demographic factors (Age, Gender, Income, Urban) significantly affect BMI scores. The interaction between Gender and Income suggests a societal issue—women’s BMI is associated with income, but men’s is not. Further research is needed to understand the causal mechanisms.
+- **Regression Analysis:** Adding BMI as a predictor improved logistic regression models for predicting Heart Attack and Diabetes but not Cancer. Chi-squared statistics and pseudo-R² values supported this. However, low pseudo-R² values and high AIC scores indicate variability in the dataset. Additional factors (e.g., family medical history, diet, exercise) were not included but may contribute to BMI predictions.
+
+---
+
+### References
+- BRFSS Dataset: [CDC BRFSS](https://www.cdc.gov/brfss/index.html)
+- BMI Classification: [WHO BMI Guidelines](https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight)
+- ANOVA Interpretation: [Understanding ANOVA](https://statisticsbyjim.com/anova/one-way-anova/)
+- Logistic Regression: [Regression Analysis](https://towardsdatascience.com/logistic-regression-detailed-overview-46c4da4303bc)
+
+---
 
 ## Implications
 The insights derived from this analysis are crucial for government agencies such as the CDC, NIH, and FDA. They help inform public health policies, awareness programs, and resource allocation for medical interventions. By identifying trends and risk factors, appropriate measures can be taken at state and federal levels to promote healthier lifestyles and prevent obesity-related diseases.
@@ -68,6 +132,10 @@ This study aims to identify patterns and trends in BMI data while assessing the 
 - **Data Analysis:** Identifying trends in BMI and their correlation with behavioral risk factors.
 - **Public Health Insights:** Informing policymakers and healthcare organizations for better decision-making.
 - **Predictive Modeling:** Exploring potential methods to predict health risks based on collected data.
+
+## Conclusion
+This study highlights the influence of behavioral and demographic factors on BMI. The findings provide insights into public health policies and potential risk factors associated with obesity-related diseases. However, due to dataset limitations, further research incorporating additional variables is recommended.
+
 
 ## License
 This project is open-source and available under the [MIT License](LICENSE). Contributions are welcome!
